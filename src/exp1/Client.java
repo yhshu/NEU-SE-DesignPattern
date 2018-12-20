@@ -1,6 +1,4 @@
-package Singleton;
-
-import java.util.Scanner;
+package exp1;
 
 public class Client {
     public static void main(String args[]) {

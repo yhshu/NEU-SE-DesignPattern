@@ -1,4 +1,4 @@
-package Singleton;
+package exp1;
 
 public class ClientThread implements Runnable {
     private Thread thread;
@@ -13,7 +13,7 @@ public class ClientThread implements Runnable {
     public void run() {
         for (int i = 1; i <= 10; i++) {
             synchronized (ClientThread.class) {
-                System.out.println("========== Singleton " + threadName + " test " + i + " ==========");
+                System.out.println("========== exp1 " + threadName + " test " + i + " ==========");
                 EagerSingleton.getInstance();
                 LazySingleton.getInstance();
             }

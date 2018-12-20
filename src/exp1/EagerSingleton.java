@@ -1,4 +1,4 @@
-package Singleton;
+package exp1;
 
 public class EagerSingleton {
     private volatile static int count = 0;
