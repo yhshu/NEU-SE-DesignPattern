@@ -4,14 +4,10 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player {
-    private List<MillionWager> wagerList; // 赌注
+    private List<Wager> wagerList; // 赌注
 
-    public List<MillionWager> getWagerList() {
+    public List<Wager> getWagerList() {
         return wagerList;
-    }
-
-    public void setWagerList(List<MillionWager> wagerList) {
-        this.wagerList = wagerList;
     }
 
     /**
@@ -19,5 +15,14 @@ public class Player {
      */
     public Player() {
         this.wagerList = new CopyOnWriteArrayList<>();
+    }
+
+    /**
+     * 支付
+     *
+     * @param cash 支付所用货币
+     */
+    public void pay(Cash cash) {
+// todo
     }
 }

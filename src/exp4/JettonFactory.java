@@ -7,14 +7,14 @@ import java.util.HashMap;
  * 筹码使用了 Flyweight 模式
  */
 public class JettonFactory {
-    private static final HashMap<String, Jetton> jettonMap = new HashMap<>();
+    private static final HashMap<String, Chip> jettonMap = new HashMap<>();
 
-    public static Jetton getJetton(String ID) {
-        Jetton jetton = jettonMap.get(ID);
-        if (jetton == null) {
-            jetton = new Jetton(100);
-            jettonMap.put(jetton.getID(), jetton);
+    public static Chip getJetton(String ID) {
+        Chip chip = jettonMap.get(ID);
+        if (chip == null) {
+            chip = new Chip(100);
+            jettonMap.put(chip.getID(), chip);
         }
-        return jetton;
+        return chip;
     }
 }

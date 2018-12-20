@@ -1,6 +1,6 @@
 package exp4;
 
-public class Cash {
+public class Cash implements Jetton {
     public static final int USD = 0;
     public static final int RMB = 0;
 
@@ -21,5 +21,15 @@ public class Cash {
 
     public void setValue(double value) {
         this.value = value;
+    }
+
+    public Cash(int type, double value) {
+        this.type = type;
+        this.value = value;
+    }
+
+    public Cash() {
+        this.type = USD;
+        this.value = 0;
     }
 }
