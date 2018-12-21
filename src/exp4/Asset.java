@@ -31,7 +31,7 @@ public class Asset implements Guaranty {
     }
 
     @Override
-    public Cash exchange() {
-        return chipAdapter.exchange(this);
+    public Cash exchange(double value) {
+        return chipAdapter.exchange(value);
     }
 }

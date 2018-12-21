@@ -2,7 +2,6 @@ package exp4;
 
 public class Cash implements Jetton {
     public static final int USD = 0;
-    public static final int RMB = 1;
 
     private int type; // 货币种类
     private double value; // 数值
@@ -17,6 +16,11 @@ public class Cash implements Jetton {
 
     public double getValue() {
         return value;
+    }
+
+    @Override
+    public Cash exchange() {
+        return this;
     }
 
     public void setValue(double value) {

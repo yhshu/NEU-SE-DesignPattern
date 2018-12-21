@@ -19,6 +19,15 @@ public class MillionWager implements Wager {
         return res;
     }
 
+    @Override
+    public Cash exchange() {
+        Cash cash = new Cash();
+        for (Jetton jetton : jettonList) {
+            cash.setValue(cash.getValue() + jetton.exchange().getValue());
+        }
+        return cash;
+    }
+
     /**
      * 构造方法
      */

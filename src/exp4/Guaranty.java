@@ -7,8 +7,8 @@ package exp4;
 public interface Guaranty {
     /**
      * 兑换
-     *
-     * @return 获得货币
+     * @param value 兑换的价值
+     * @return 兑换所得货币
      */
-    Cash exchange();
+    Cash exchange(double value);
 }

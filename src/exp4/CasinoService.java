@@ -1,7 +1,9 @@
 package exp4;
 
-import java.util.concurrent.locks.Lock;
-
+/**
+ * 赌场服务
+ * Facade
+ */
 public class CasinoService {
     public volatile static int ID = 0;
 
@@ -15,5 +17,12 @@ public class CasinoService {
             ID++;
             return retID;
         }
+    }
+
+    /**
+     * 打印菜单
+     */
+    public static void printMenu() {
+        System.out.println("Casino>>");
     }
 }

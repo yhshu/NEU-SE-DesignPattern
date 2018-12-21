@@ -6,4 +6,6 @@ package exp4;
 public interface Jetton {
 
     double getValue();
+
+    Cash exchange();
 }

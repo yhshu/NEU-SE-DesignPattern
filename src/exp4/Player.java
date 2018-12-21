@@ -5,9 +5,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player {
     private List<Wager> wagerList; // 赌注
+    private List<Cash> cashList; // 货币
 
     public List<Wager> getWagerList() {
         return wagerList;
+    }
+
+    public List<Cash> getCashList() {
+        return cashList;
     }
 
     /**
@@ -15,6 +20,7 @@ public class Player {
      */
     public Player() {
         this.wagerList = new CopyOnWriteArrayList<>();
+        this.cashList = new CopyOnWriteArrayList<>();
     }
 
     /**
