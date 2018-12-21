@@ -4,9 +4,6 @@ public class LazySingleton {
     private volatile static int count = 0;
     private volatile static LazySingleton uniqueInstance;
 
-    private LazySingleton() {
-    }
-
     public static LazySingleton getInstance() {
         if (uniqueInstance == null) {
             synchronized (LazySingleton.class) {

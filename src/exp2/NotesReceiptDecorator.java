@@ -1,7 +1,5 @@
 package exp2;
 
-import java.util.List;
-
 public class NotesReceiptDecorator extends ReceiptDecorator {
     private String notes = "****************************\n" +
             "货物售出概不退款\n" +

@@ -5,5 +5,5 @@ package exp4;
  */
 public interface Jetton {
 
-    double sum();
+    double getValue();
 }

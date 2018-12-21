@@ -10,5 +10,5 @@ public interface Guaranty {
      *
      * @return 获得货币
      */
-    Cash exchange(double value);
+    Cash exchange();
 }

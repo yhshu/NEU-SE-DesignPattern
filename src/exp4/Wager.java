@@ -3,7 +3,7 @@ package exp4;
 import java.util.List;
 
 public interface Wager {
-    List<Chip> getChipList();
+    List<Jetton> getJettonList();
 
     double totalValue();
 }

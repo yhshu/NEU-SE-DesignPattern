@@ -1,7 +1,5 @@
 package exp2;
 
-import java.util.List;
-
 public class ContactReceiptDecorator extends ReceiptDecorator {
     private String contact = "****************************\n" +
             "14天购物保证。货真价实\n" +

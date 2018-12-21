@@ -6,7 +6,16 @@ package exp4;
  */
 public class Asset implements Guaranty {
     private String type;
-    private JettonAdapter jettonAdapter;
+    private double value;
+    private ChipAdapter chipAdapter;
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
 
     public String getType() {
         return type;
@@ -18,12 +27,11 @@ public class Asset implements Guaranty {
 
     public Asset(String type) {
         this.type = type;
-        this.jettonAdapter = new JettonAdapter();
+        this.chipAdapter = new ChipAdapter();
     }
 
     @Override
-    public Cash exchange(double value) {
-        return jettonAdapter.exchange(value);
+    public Cash exchange() {
+        return chipAdapter.exchange(this);
     }
-
 }
