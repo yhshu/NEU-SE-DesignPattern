@@ -32,7 +32,7 @@ public class Chip implements Jetton {
     }
 
     public Chip(double value) {
-        this.ID = String.valueOf(CasinoService.getID());
+        this.ID = String.valueOf(Client.getCasinoService().getID());
         this.value = value;
     }
 

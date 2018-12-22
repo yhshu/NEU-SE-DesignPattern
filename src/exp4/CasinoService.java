@@ -5,13 +5,9 @@ package exp4;
  * Facade
  */
 public class CasinoService {
-    public volatile static int ID = 0;
+    public volatile int ID = 0;
 
-    public static void main(String args[]) {
-
-    }
-
-    public static int getID() {
+    public int getID() {
         synchronized (CasinoService.class) {
             int retID = ID;
             ID++;
@@ -19,10 +15,34 @@ public class CasinoService {
         }
     }
 
+    public void setID(int ID) {
+        synchronized (CasinoService.class) {
+            this.ID = ID;
+        }
+    }
+
     /**
-     * 打印菜单
+     * 查看帮助
      */
-    public static void printMenu() {
-        System.out.println("Casino>>");
+    public void help() {
+        System.out.println("- help 帮助");
+        System.out.println("- cash 查看持有货币");
+        System.out.println("- wager 查看持有赌注");
+        System.out.println("- quit 退出");
+    }
+
+    /**
+     * 退出程序
+     */
+    public void quit() {
+        System.out.println("Good bye!");
+        System.exit(0);
+    }
+
+    /**
+     * 查看持有货币
+     */
+    public void cash() {
+
     }
 }
