@@ -22,11 +22,11 @@ public class CasinoService {
      * 查看帮助
      */
     public void help() {
-        System.out.println("- help 帮助");
-        System.out.println("- cash 查看持有货币");
-        System.out.println("- wager 查看持有赌注");
-        System.out.println("    -- sum 计算赌注总价值");
-        System.out.println("- quit 退出");
+        System.out.println("- help: view command information");
+        System.out.println("- cash: view holding currency");
+        System.out.println("- wager: view holding wager");
+        System.out.println("    -- sum: calculate the total value of the wager");
+        System.out.println("- quit: exit the program");
     }
 
     /**

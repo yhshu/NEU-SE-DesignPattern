@@ -29,9 +29,12 @@ public class Client {
 
     public static void main(String args[]) {
         clientInit();
-        System.out.println("[Info] Client initialization completed");
-
         Scanner sc = new Scanner(System.in);
+        System.out.print("Please enter your username: ");
+        casinoService.getPlayer().setNickname(sc.nextLine());
+        System.out.println("[Info] Client initialization completed");
+        System.out.println("Welcome, " + casinoService.getPlayer().getNickname());
+
         String line;
         printMenu();
         boolean validCommand;
@@ -54,7 +57,7 @@ public class Client {
             }
             validCommand = broker.placeCommands();
             if (!validCommand) {
-                System.out.println(line + " 不是有效的命令");
+                System.out.println(line + " is not a valid command");
             }
             printMenu();
         }

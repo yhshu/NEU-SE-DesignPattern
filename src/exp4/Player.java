@@ -7,6 +7,7 @@ public class Player {
     private String nickname = "player";
     private List<Wager> wagerList; // 赌注
     private List<Cash> cashList; // 货币
+    private List<Asset> assetList;
 
     public String getNickname() {
         return nickname;
@@ -30,6 +31,7 @@ public class Player {
     public Player() {
         this.wagerList = new CopyOnWriteArrayList<>();
         this.cashList = new CopyOnWriteArrayList<>();
+        this.assetList = new CopyOnWriteArrayList<>();
         // 玩家初始资产
         cashList.add(new Cash(Cash.USD, 1e6));
         wagerList.add(new MillionWager());

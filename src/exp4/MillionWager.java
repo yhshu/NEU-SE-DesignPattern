@@ -34,6 +34,7 @@ public class MillionWager implements Wager {
         Cash cash = new Cash();
         for (Jetton jetton : jettonList) {
             cash.setValue(cash.getValue() + jetton.exchange().getValue());
+            // todo 移除该 jetton
         }
         return cash;
     }

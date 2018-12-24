@@ -4,6 +4,12 @@ public class LazySingleton {
     private volatile static int count = 0;
     private volatile static LazySingleton uniqueInstance;
 
+    /**
+     * 私有构造方法，该类不会被实例化
+     */
+    private LazySingleton() {
+    }
+
     public static LazySingleton getInstance() {
         if (uniqueInstance == null) {
             synchronized (LazySingleton.class) {
