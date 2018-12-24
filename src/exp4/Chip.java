@@ -32,11 +32,20 @@ public class Chip implements Jetton {
     }
 
     public Chip(double value) {
-        this.ID = String.valueOf(Client.getCasinoService().getID());
-        this.value = value;
+        try {
+            this.ID = String.valueOf(ChipFactory.getID());
+            this.value = value;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("[Error] Chip initialization exception");
+        }
     }
 
     public Cash exchange() {
         return exchangeStrategy.operate(this);
+    }
+
+    public String toString() {
+        return "Chip ID: " + this.ID + "; Value: " + this.value;
     }
 }

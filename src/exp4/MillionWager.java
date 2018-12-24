@@ -5,9 +5,19 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MillionWager implements Wager {
     private List<Jetton> jettonList;
+    private static int million = 1000000;
+    private int unitValue = 100000; // 单个 chip 的价值
 
     public List<Jetton> getJettonList() {
         return jettonList;
+    }
+
+    public int getUnitValue() {
+        return unitValue;
+    }
+
+    public void setUnitValue(int unitValue) {
+        this.unitValue = unitValue;
     }
 
     @Override
@@ -33,8 +43,9 @@ public class MillionWager implements Wager {
      */
     public MillionWager() {
         this.jettonList = new CopyOnWriteArrayList<>();
-        for (int i = 0; i < 10000; i++)
-            jettonList.add(new Chip(100));
+        int num = million / unitValue;
+        for (int i = 0; i < num; i++)
+            jettonList.add(new Chip(unitValue));
     }
 
     /**

@@ -1,8 +1,6 @@
 package exp4;
 
-import exp4.CMD.Broker;
-import exp4.CMD.HelpCommand;
-import exp4.CMD.QuitCommand;
+import exp4.CMD.*;
 
 import java.util.Scanner;
 
@@ -10,9 +8,12 @@ public class Client {
     private static CasinoService casinoService;
     private static Broker broker;
     private static HelpCommand helpCommand;
+    private static CashCommand cashCommand;
+    private static WagerCommand wagerCommand;
+    private static SumCommand sumCommand;
     private static QuitCommand quitCommand;
 
-    public static CasinoService getCasinoService() {
+    synchronized public static CasinoService getCasinoService() {
         return casinoService;
     }
 
@@ -20,11 +21,16 @@ public class Client {
         casinoService = new CasinoService();
         broker = new Broker();
         helpCommand = new HelpCommand(casinoService);
+        cashCommand = new CashCommand(casinoService);
+        wagerCommand = new WagerCommand(casinoService);
+        sumCommand = new SumCommand(casinoService);
         quitCommand = new QuitCommand(casinoService);
     }
 
     public static void main(String args[]) {
         clientInit();
+        System.out.println("[Info] Client initialization completed");
+
         Scanner sc = new Scanner(System.in);
         String line;
         printMenu();
@@ -33,12 +39,22 @@ public class Client {
             validCommand = false;
             if (line.contains("help")) {
                 broker.takeCommand(helpCommand);
-            } else if (line.contains("quit")) {
+            }
+            if (line.contains("cash")) {
+                broker.takeCommand(cashCommand);
+            }
+            if (line.contains("wager")) {
+                broker.takeCommand(wagerCommand);
+            }
+            if (line.contains("sum")) {
+                broker.takeCommand(sumCommand);
+            }
+            if (line.contains("quit")) {
                 broker.takeCommand(quitCommand);
             }
             validCommand = broker.placeCommands();
             if (!validCommand) {
-                System.out.println(line + " is not a valid command");
+                System.out.println(line + " 不是有效的命令");
             }
             printMenu();
         }

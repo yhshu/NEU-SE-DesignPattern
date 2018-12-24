@@ -36,4 +36,21 @@ public class Cash implements Jetton {
         this.type = USD;
         this.value = 0;
     }
+
+    public String toString() {
+        return "Cash Type: " + getType(this.type) + "; Value: " + this.value;
+    }
+
+    private String getType(int type) {
+        String ret;
+        switch (type) {
+            case 0:
+                ret = "USD";
+                break;
+            default:
+                ret = "unknown";
+                break;
+        }
+        return ret;
+    }
 }

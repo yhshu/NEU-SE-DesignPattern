@@ -18,15 +18,13 @@ public class Broker {
      *
      * @return 是否执行了命令
      */
-    public boolean placeCommands() {
-        synchronized (Broker.class) {
-            if (commandList.isEmpty())
-                return false;
-            for (Command command : commandList) {
-                command.execute();
-            }
-            commandList.clear();
-            return true;
+    synchronized public boolean placeCommands() {
+        if (commandList.isEmpty())
+            return false;
+        for (Command command : commandList) {
+            command.execute();
         }
+        commandList.clear();
+        return true;
     }
 }
