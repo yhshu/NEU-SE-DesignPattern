@@ -38,14 +38,18 @@ public class Player {
     }
 
     /**
-     * 支付
+     * 用货币下赌注
      *
      * @param cash 支付所用货币
      */
-    public void pay(Cash cash) {
-// todo
+    public void buy(Cash cash) {
+        // todo
+
     }
 
+    /**
+     * 赌注的总价值
+     */
     public void sum() {
         double res = 0;
         try {
@@ -61,5 +65,14 @@ public class Player {
             System.out.println("[Error] Wager summation exception");
         }
         System.out.println("Player: " + this.nickname + "; Sum of wagers:" + res);
+    }
+
+    /**
+     * 筹码兑换货币
+     *
+     * @param jetton 被兑换的筹码
+     */
+    public void exchange(Jetton jetton) {
+
     }
 }
