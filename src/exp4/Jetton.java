@@ -8,4 +8,6 @@ public interface Jetton {
     double getValue();
 
     Cash exchange();
+
+    String toString();
 }

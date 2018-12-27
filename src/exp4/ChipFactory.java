@@ -1,14 +1,17 @@
 package exp4;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * 筹码工厂
  * 筹码使用了 Flyweight 模式
  */
 public class ChipFactory {
-    private static int ID = 1;
-    private static final HashMap<String, Chip> chipMap = new HashMap<>();
+    private volatile static int ID = 1;
+    private static HashMap<String, Chip> chipMap = new HashMap<>();
+    private static List<Chip> chipList = new CopyOnWriteArrayList<>();
 
     public static Chip getChip(String ID) {
         Chip chip = chipMap.get(ID);

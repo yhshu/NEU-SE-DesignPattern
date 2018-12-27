@@ -29,22 +29,12 @@ public class MillionWager implements Wager {
         return res;
     }
 
-    @Override
-    public Cash exchange() {
-        Cash cash = new Cash();
-        for (Jetton jetton : jettonList) {
-            cash.setValue(cash.getValue() + jetton.exchange().getValue());
-            // todo 移除该 jetton
-        }
-        return cash;
-    }
-
     /**
      * 构造方法
      */
     public MillionWager() {
         this.jettonList = new CopyOnWriteArrayList<>();
-        int num = million / unitValue;
+        int num = million / unitValue; // chip 数量
         for (int i = 0; i < num; i++)
             jettonList.add(new Chip(unitValue));
     }

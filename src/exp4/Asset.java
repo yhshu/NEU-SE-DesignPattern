@@ -25,13 +25,18 @@ public class Asset implements Guaranty {
         this.type = type;
     }
 
-    public Asset(String type) {
+    public Asset(String type, double value) {
         this.type = type;
+        this.value = value;
         this.chipAdapter = new ChipAdapter();
     }
 
     @Override
     public Cash exchange(double value) {
         return chipAdapter.exchange(value);
+    }
+
+    public String toString() {
+        return "Type: " + this.type + " Value: " + this.value;
     }
 }

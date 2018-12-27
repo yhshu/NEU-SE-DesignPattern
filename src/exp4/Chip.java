@@ -1,6 +1,7 @@
 package exp4;
 
 
+import exp4.Exchange.ChipToCashExchange;
 import exp4.Exchange.ExchangeStrategy;
 
 /**
@@ -33,12 +34,13 @@ public class Chip implements Jetton {
 
     public Chip(double value) {
         try {
-            this.ID = String.valueOf(ChipFactory.getID());
+            this.ID = String.valueOf(ChipFactory.getID()); // 获取自增 ID
             this.value = value;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("[Error] Chip initialization exception");
         }
+        exchangeStrategy = new ChipToCashExchange();
     }
 
     public Cash exchange() {

@@ -6,6 +6,4 @@ public interface Wager {
     List<Jetton> getJettonList();
 
     double totalValue();
-
-    Cash exchange();
 }
