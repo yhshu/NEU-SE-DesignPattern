@@ -1,6 +1,6 @@
 package exp4.Exchange;
 
-import exp4.Cash;
+import exp4.Jettons.Cash;
 
 /**
  * 抵押物兑换货币的算法

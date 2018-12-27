@@ -1,4 +1,4 @@
-package exp4;
+package exp4.Jettons;
 
 
 import exp4.Exchange.ChipToCashExchange;

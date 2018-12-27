@@ -1,4 +1,4 @@
-package exp4;
+package exp4.Jettons;
 
 /**
  * 筹码适配器

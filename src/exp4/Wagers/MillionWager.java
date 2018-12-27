@@ -1,15 +1,28 @@
-package exp4;
+package exp4.Wagers;
+
+import exp4.Jettons.Chip;
+import exp4.Jettons.Jetton;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MillionWager implements Wager {
     private List<Jetton> jettonList;
-    private static int million = 1000000;
+    public final static int million = 1000000;
     private int unitValue = 100000; // 单个 chip 的价值
 
     public List<Jetton> getJettonList() {
         return jettonList;
+    }
+
+    @Override
+    public void add(Jetton jetton) {
+        this.jettonList.add(jetton);
+    }
+
+    @Override
+    public void remove(Jetton jetton) {
+        this.jettonList.remove(jetton);
     }
 
     public int getUnitValue() {

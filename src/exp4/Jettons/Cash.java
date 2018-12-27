@@ -1,4 +1,4 @@
-package exp4;
+package exp4.Jettons;
 
 public class Cash implements Jetton {
     public static final int USD = 0;

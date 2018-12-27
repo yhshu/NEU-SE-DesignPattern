@@ -1,4 +1,8 @@
-package exp4;
+package exp4.Wagers;
+
+import exp4.Jettons.Jetton;
+
+import java.util.List;
 
 /**
  * 赌注工厂
@@ -11,5 +15,11 @@ public class WagerFactory {
         if (wagerType.equalsIgnoreCase("million"))
             return new MillionWager();
         return null;
+    }
+
+    public CustomizeWager getWager(List<Jetton> jettonList) {
+        if (jettonList == null || jettonList.isEmpty())
+            return null;
+        return new CustomizeWager(jettonList);
     }
 }

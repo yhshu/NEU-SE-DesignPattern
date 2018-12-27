@@ -1,4 +1,5 @@
-package exp4;
+package exp4.Jettons;
+
 
 /**
  * 抵押物
@@ -7,6 +8,7 @@ package exp4;
 public interface Guaranty {
     /**
      * 兑换
+     *
      * @param value 兑换的价值
      * @return 兑换所得货币
      */

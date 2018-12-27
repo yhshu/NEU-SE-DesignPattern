@@ -1,8 +1,6 @@
-package exp4;
+package exp4.Jettons;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * 筹码工厂
@@ -11,7 +9,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ChipFactory {
     private volatile static int ID = 1;
     private static HashMap<String, Chip> chipMap = new HashMap<>();
-    private static List<Chip> chipList = new CopyOnWriteArrayList<>();
+
+    private ChipFactory() {
+    }
 
     public static Chip getChip(String ID) {
         Chip chip = chipMap.get(ID);

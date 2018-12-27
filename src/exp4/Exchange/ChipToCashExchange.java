@@ -1,7 +1,8 @@
 package exp4.Exchange;
 
-import exp4.Cash;
-import exp4.Chip;
+
+import exp4.Jettons.Cash;
+import exp4.Jettons.Chip;
 
 public class ChipToCashExchange implements ExchangeStrategy {
 

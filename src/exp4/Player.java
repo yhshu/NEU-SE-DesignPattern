@@ -1,5 +1,9 @@
 package exp4;
 
+import exp4.Jettons.*;
+import exp4.Wagers.MillionWager;
+import exp4.Wagers.Wager;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -55,8 +59,11 @@ public class Player {
         this.assetList = new CopyOnWriteArrayList<>();
         // 玩家初始资产
         cashList.add(new Cash(Cash.USD, 1e6));
-        for (int i = 0; i < 10; i++)
-            jettonList.add(new Chip(100000));
+        for (int i = 0; i < 10; i++) {
+            Chip chip = ChipFactory.getChip(String.valueOf(ChipFactory.getID()));
+            chip.setValue(100000);
+            jettonList.add(chip);
+        }
         wagerList.add(new MillionWager());
         assetList.add(new Asset("WATCH", 108888));
     }
@@ -124,6 +131,15 @@ public class Player {
         return null;
     }
 
+    public Asset getAsset(int num) {
+        for (Asset asset : assetList) {
+            if (asset.getID() == num) {
+                return asset;
+            }
+        }
+        return null;
+    }
+
     public boolean addCash(Cash cash) {
         try {
             if (this.getCashList().isEmpty()) {
@@ -151,12 +167,17 @@ public class Player {
 
     public boolean addChip(Chip chip) {
         try {
-            if (this.hasChip(Integer.parseInt(chip.getID()))) return true;
+            if (this.hasChip(Integer.parseInt(chip.getID())))
+                return true;
             jettonList.add(chip);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
         return true;
+    }
+
+    public void addWager(Wager wager) {
+        this.wagerList.add(wager);
     }
 }

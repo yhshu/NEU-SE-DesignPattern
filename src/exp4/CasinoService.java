@@ -1,9 +1,14 @@
 package exp4;
 
 import exp4.CMD.*;
+import exp4.Jettons.*;
+import exp4.Wagers.MillionWager;
+import exp4.Wagers.Wager;
+import exp4.Wagers.WagerFactory;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * 赌资管理服务
@@ -23,6 +28,7 @@ public class CasinoService {
     private AssetCommand assetCommand;
     private ExchangeCommand exchangeCommand;
     private BetCommand betCommand;
+    private WagerFactory wagerFactory;
 
     /**
      * 属性
@@ -31,7 +37,8 @@ public class CasinoService {
     private Player player;
 
     public CasinoService() {
-        player = new Player(); // 注意避免循环构造
+        this.player = new Player(); // 注意避免循环构造
+        this.wagerFactory = new WagerFactory();
         this.broker = new Broker();
         this.helpCommand = new HelpCommand(this);
         this.cashCommand = new CashCommand(this);
@@ -235,24 +242,90 @@ public class CasinoService {
     }
 
     public void exchange() {
-        System.out.println("- Which chip in your hand do you want to exchange for cash? Please enter the chip number.");
+        final int CHIP = 1;
+        final int ASSET = 2;
         Scanner sc = new Scanner(System.in);
-        int chipNum = sc.nextInt();
-        Chip chip = player.getChip(chipNum);
-        if (chip == null) {
-            // 如果玩家不持有该筹码
-            System.out.println("[Error] Player " + player.getNickname() + " does not hold the chip #" + chipNum);
-            return;
+        System.out.println(CHIP + ". redeem chip");
+        System.out.println(ASSET + ". redeem asset");
+        int choice = sc.nextInt();
+        if (choice == CHIP) {
+            System.out.println("- Which chip in your hand do you want to exchange for cash? Please enter the chip number.");
+            int chipNum = sc.nextInt();
+            if (!player.hasChip(chipNum)) {
+                // 如果玩家不持有该筹码
+                System.out.println("[Error] Player " + player.getNickname() + " does not hold the chip #" + chipNum);
+                return;
+            }
+            // 如果玩家持有该筹码
+            Chip chip = ChipFactory.getChip(String.valueOf(chipNum));
+            player.getJettonList().remove(chip);
+            player.addCash(chip.exchange());
+            System.out.println("[Info] Player " + player.getNickname() + " has converted the chip#" + chipNum + " into cash $" + chip.getValue());
+        } else if (choice == ASSET) {
+            System.out.println("- Which asset in your hand do you want to exchange for cash? Please enter the asset number.");
+            int assetNum = sc.nextInt();
+            Asset asset = player.getAsset(assetNum);
+            if (asset == null) {
+                // 如果玩家不持有该有形资产
+                System.out.println("[Error] Player " + player.getNickname() + " does not hold the asset #" + assetNum);
+                return;
+            }
+            player.getAssetList().remove(asset);
+            player.addCash(asset.exchange(asset.getValue()));
+            System.out.println("[Info] Player " + player.getNickname() + " has converted the asset#" + assetNum + " into cash $" + asset.getValue());
         }
-        // 如果玩家持有该筹码
-        player.getJettonList().remove(chip);
-        player.addCash(chip.exchange());
-        System.out.println("[Info] Player " + player.getNickname() + " has converted the chip#" + chipNum + " into cash $" + chip.getValue());
     }
 
     public void bet() {
-// todo
-
+        final int CASH = 1;
+        final int CHIP = 2;
+        final int ASSET = 3;
+        System.out.println("- What property do you want to bet on?");
+        System.out.println(CASH + ". cash"); // cash 是一类 jetton，可用于下注，但 player.jettonList 实际上暂时只有 chip
+        System.out.println(CHIP + ". chip");
+        System.out.println(ASSET + ". asset");
+        Scanner sc = new Scanner(System.in);
+        int choice = sc.nextInt();
+        List<Jetton> jettonList;
+        switch (choice) {
+            case CASH:
+                if (!player.spendCash(MillionWager.million)) { // 玩家所持现金不足以下注
+                    System.out.println("- You don't have that much cash now");
+                } else { // 玩家拥有足够现金下注
+                    this.player.addWager(this.wagerFactory.getWager("million"));
+                }
+                break;
+            case CHIP:
+                System.out.println("- Please tell me which chip you'd like to use, you should enter the chip number");
+                int chipNum = sc.nextInt();
+                Chip chip = ChipFactory.getChip(String.valueOf(chipNum));
+                if (!player.hasChip(chipNum)) {
+                    // 如果玩家不持有该筹码
+                    System.out.println("[Error] Player " + player.getNickname() + " does not hold the chip #" + chipNum);
+                    return;
+                } // 如果玩家持有该筹码
+                player.getJettonList().remove(chip);
+                jettonList = new CopyOnWriteArrayList<>();
+                jettonList.add(chip);
+                player.addWager(wagerFactory.getWager(jettonList));
+                break;
+            case ASSET:
+                System.out.println("- Please tell me which asset you'd like to use, you should enter the asset number");
+                int assetNum = sc.nextInt();
+                // todo
+                Asset asset = player.getAsset(assetNum);
+                if (asset == null) {
+                    // 如果玩家不持有该有形资产
+                    System.out.println("[Error] Player " + player.getNickname() + " does not hold the asset #" + assetNum);
+                    return;
+                } // 如果玩家持有该有形资产
+                player.getAssetList().remove(asset);
+                jettonList = new CopyOnWriteArrayList<>();
+                jettonList.add(asset);
+                player.addWager(wagerFactory.getWager(jettonList));
+                break;
+            default:
+                break;
+        }
     }
 }
-
