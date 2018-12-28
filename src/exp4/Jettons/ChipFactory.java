@@ -10,7 +10,7 @@ public class ChipFactory {
     private volatile static int ID = 1;
     private static HashMap<String, Chip> chipMap = new HashMap<>();
 
-    private ChipFactory() {
+    private ChipFactory() { // 享元工厂私有构造方法
     }
 
     public static Chip getChip(String ID) {

@@ -51,23 +51,4 @@ public class MillionWager implements Wager {
         for (int i = 0; i < num; i++)
             jettonList.add(new Chip(unitValue));
     }
-
-    /**
-     * 加码
-     *
-     * @param chip 该赌注增加的筹码
-     */
-    public void addJetton(Jetton chip) {
-        this.jettonList.add(chip);
-    }
-
-    /**
-     * 减码
-     *
-     * @param chip 该赌注移除的筹码
-     */
-    public void removeJetton(Chip chip) {
-        this.jettonList.remove(chip);
-    }
-
 }
