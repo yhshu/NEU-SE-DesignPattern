@@ -13,7 +13,7 @@ public class ChipFactory {
     private ChipFactory() { // 享元工厂私有构造方法
     }
 
-    public static Chip getChip(String ID) {
+    synchronized public static Chip getChip(String ID) {
         Chip chip = chipMap.get(ID);
         if (chip == null) {
             chip = new Chip(100);
